@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous')
+  link(rel='stylesheet', href='/stylesheets/auth.css')
+  div(class='container-fliud text-center my-5 py-5')
+    div(class='text-center')
+      img(class='d-block mx-auto mb-2', src='/assets/logo_2.png', alt='logo', width='150', height='150')
+    form(id='form-auth' class='form-auth' action='/signup', method='POST')
+      h3(class='h2 mb-3 font-weight-normal') Please sign up
+      if error
+        div(class='alert alert-warning')=error
+      div(class='alert alert-warning' id='validation-alert')
+      div(class='input-group form-group')
+        div(class='input-group-prepend')
+          span(class='input-group-text')
+            i(class='fas fa-user')
+        input(class='form-control' id='input-username' name='username', value='', type='text' placeholder='Username (4 or more characters)')
+      div(class='input-group form-group')
+        div(class='input-group-prepend')
+          span(class='input-group-text')
+            i(class='fas fa-envelope')
+        input(class='form-control' id='input-email' name='email', value='', type='email' placeholder='Email (e.g. user@mail.com)')
+      div(class='input-group form-group')
+        div(class='input-group-prepend password-field')
+          span(class='input-group-text')
+            i(class='fas fa-key')
+        input(class='form-control' id='input-password' name='password', value='', type='password' placeholder='Password (8 or more characters')
+      div(class='input-group form-group')
+        div(class='input-group-prepend password-field')
+          span(class='input-group-text')
+            i(class='fas fa-key')
+        input(class='form-control' id='input-password-match' name='password-match', value='', type='password' placeholder='Repeat your password')
+      input(class='form-control' id='input-zip' name='zip', value='', type='number' placeholder='Enter your zip code')
+      div(class='custom-control custom-checkbox mb-3')
+        input(class='custom-control-input', id='agreeServicesCheckBox', type='checkbox', value='', required='')
+        label(class='custom-control-label')(for='agreeServicesCheckBox') I accept the 
+          a(type='button', class="a-href" data-toggle='modal' data-target='#contactModal') Services Agreement
+
+      button(class='btn btn-lg btn-solid btn-block', type='submit') Sign Up
+      a(class='btn btn-lg btn-href btn-block', href="/") Home
+  div(class='modal fade bd-example-modal-xl', id='contactModal', tabindex='-1', role='dialog', aria-labelledby='contactModal', aria-hidden='true')
+    div(class='modal-dialog  modal-dialog-scrollable modal-xl modal-dialog-centered' role='document')
+      div(class='modal-content')
+        div(class='modal-header')
+          h5(class='modal-title') Services Agreement
+          button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        div(class='modal-body') 
+          h3 AGREEMENT TO TERMS
+          p These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and Getcha.Today (“we,” “us” or “our”), concerning your access to and use of the getcha.today website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”). 
+          p You agree that by accessing the Site, you have read, understood, and agree to be bound by all of these Terms of Use, which were created using Termly’s terms and conditions generator. If you do not agree with all of these Terms of Use, then you are expressly prohibited from using the Site and you must discontinue use immediately. 
+          p Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason. 
+          p We will alert you about any changes by updating the “Last updated” date of these Terms of Use, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Terms of Use to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Terms of Use by your continued use of the Site after the date such revised Terms of Use are posted. 
+          p The information provided on the Site is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. 
+          h5 INTELLECTUAL PROPERTY RIGHTS 
+          p Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws and various other intellectual property rights and unfair competition laws of the United States, foreign jurisdictions, and international conventions. 
+          p The Content and the Marks are provided on the Site “AS IS” for your information and personal use only. Except as expressly provided in these Terms of Use, no part of the Site and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
+          p Provided that you are eligible to use the Site, you are granted a limited license to access and use the Site and to download or print a copy of any portion of the Content to which you have properly gained access solely for your personal, non-commercial use. We reserve all rights not expressly granted to you in and to the Site, the Content and the Marks.
+          h5 PRODUCTS
+          p [We make every effort to display as accurately as possible the colors, features, specifications, and details of the products available on the Site. However, we do not guarantee that the colors, features, specifications, and details of the products will be accurate, complete, reliable, current, or free of other errors, and your electronic display may not accurately reflect the actual colors and details of the products.] 
+          p All products are subject to availability[, and we cannot guarantee that items will be in stock]. We reserve the right to discontinue any products at any time for any reason. Prices for all products are subject to change.
+          h5 USER GENERATED CONTRIBUTIONS
+          p The Site may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality, and may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Site, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). 
+          h5 CONTRIBUTION LICENSE
+          p By posting your Contributions to any part of the Site [or making Contributions accessible to the Site by linking your account from the Site to any of your social networking accounts], you automatically grant, and you represent and warrant that you have the right to grant, to us an unrestricted, unlimited, irrevocable, perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right, and license to host, use, copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform, publicly display, reformat, translate, transmit, excerpt (in whole or in part), and distribute such Contributions (including, without limitation, your image and voice) for any purpose, commercial, advertising, or otherwise, and to prepare derivative works of, or incorporate into other works, such Contributions, and grant and authorize sublicenses of the foregoing. The use and distribution may occur in any media formats and through any media channels. 
+          h5 THIRD-PARTY WEBSITES AND CONTENT
+          p The Site may contain (or you may be sent via the Site) links to other websites ("Third-Party Websites") as well as articles, photographs, text, graphics, pictures, designs, music, sound, video, information, applications, software, and other content or items belonging to or originating from third parties ("Third-Party Content"). 
+          p Such Third-Party Websites and Third-Party Content are not investigated, monitored, or checked for accuracy, appropriateness, or completeness by us, and we are not responsible for any Third Party Websites accessed through the Site or any Third-Party Content posted on, available through, or installed from the Site, including the content, accuracy, offensiveness, opinions, reliability, privacy practices, or other policies of or contained in the Third-Party Websites or the Third-Party Content. 
+          h5 ADVERTISERS
+          p We allow advertisers to display their advertisements and other information in certain areas of the Site, such as sidebar advertisements or banner advertisements. If you are an advertiser, you shall take full responsibility for any advertisements you place on the Site and any services provided on the Site or products sold through those advertisements. 
+          p Further, as an advertiser, you warrant and represent that you possess all rights and authority to place advertisements on the Site, including, but not limited to, intellectual property rights, publicity rights, and contractual rights. 
+          h5 PRIVACY POLICY
+          p We care about data privacy and security. Please review our Privacy Policy [CLICK HERE]/posted on the Site. By using the Site, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use. Please be advised the Site is hosted in the United States. 
+          p If you access the Site from the European Union, Asia, or any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Site, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States. 
+  script(src='/javascripts/form.js')

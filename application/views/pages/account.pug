@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div(class='main-container container-fliud my-5 my-lg-4')
+
+    div(class='row')
+      div(class='col-md-4 order-md-2 mb-4')
+        div(class='card text-center')
+          div(class='card-body')
+            img(class="d-block mx-auto mb-4" src="/assets/user.png" alt="" width="150" height="150")
+          p(class='lead')='Username: ' + user.username
+          p(class='lead')='Location: ' + userData.location.city + ", " + userData.location.state
+          p(class='lead')='Joined: ' + user.registered.slice(0,10)
+      div(class='col-md-8 order-md-1')
+        div(class='card')
+          div(class='card-body')
+            form(action='/account/update', method='POST')
+              div(class='form-group mb-3')
+              div(class='form-group mb-3')
+                label(for='passwordInput') Password
+                input(name='password', type='password',class='form-control',id='passwordInput', value='password', disabled)
+              div(class='form-group mb-3')
+                label(for='emailInput') Email
+                input(name='email', type='email',class='form-control',id='emailInput', placeholder="Enter new email!", value=userData.email, required)
+              button(type='submit' class='mx-3 btn btn-solid') Save Changes
+
+                
+          
+          

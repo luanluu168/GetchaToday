@@ -1,0 +1,8 @@
+body {
+  text-align: center;
+  overflow:hidden;
+}
+
+#error-container {
+  margin-top: 250px;
+}

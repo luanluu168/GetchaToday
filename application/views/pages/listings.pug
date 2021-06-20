@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/listings.css')
+  div(class='main-container container-fliud my-5 my-lg-4')
+    div(class='row')
+      div(class='col-lg-12 mx-1')
+        form(id='formSearch', action='/listings/search', method='POST')
+          div(class='form-group mb-3')
+            label.ml-3(for='filterInput') Search listings
+              span.text-warning#filterWarning
+            div(class='input-group')
+              input(name='filter', type='text',class='form-control',id='filterInput', placeholder='What are you looking for?', value=filters.filter)
+              div(class='input-group-append')
+                button(class='btn btn-outline-solid', type='submit')
+                  i.fa.fa-search
+          .form-row
+            .form-group.col-md-4
+              select(class='custom-select', id='categorySelect', name='category')
+                option(value='') Select category
+                option(value='electronics') Electronics
+                option(value='clothes') Clothes
+                option(value='furniture') Furniture
+                option(value='vehicles') Vehicles
+                option(value='other') Other
+            .form-group.col-md-2
+              input#inputMinPrice.form-control(type='number', name='minPrice', placeholder='Min.Price, $')
+            .form-group.col-md-2
+              input#inputMaxPrice.form-control(type='number', name='maxPrice', placeholder='Max.Price, $')
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='sortSelect', name='sort')
+                option(value='', selected='') Sort
+                option(value='recent') Most Recent
+                option(value='high') Price High to Low
+                option(value='low') Price Low to High
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='distanceSelect', name='distance')
+                option(value='', selected='') Max.Distance, miles
+                option(value='10') 10
+                option(value='50') 50
+                option(value='100') 100
+      h4.container-fluid.display-5='Found '+listings.length+' listings'  
+      if listings.length===0
+        if !filters
+          .lead.ml-3.mt-3 No listings found! 
+          if user
+            .lead.mt-3 Be the first to
+              a(href='/listings/new')  create a listing
+        else
+          .lead.mt-3="No results for search "+filters.filter
+      else
+
+        each listing, i in listings
+          div(class='col-lg-4')
+            div(class='card mb-4 shaddow-sm')
+              img(src='/api/images/'+listing.image, class='card-img-top', data-toggle='modal' data-target='#imgModal'+i)
+              div(class='card-body')
+                h5(class='card-title')=listing.title
+                h6(class='card-subtitle mb-2 text-muted')='US $'+listing.price
+                h5
+                  span(class="badge badge-secondary")=listing.category
+                p(class="card-text")=listing.location.city+", "+listing.location.state
+                div(class='btn-group', role='group', aria-label='Basic example')
+                  a(type='button', class='btn btn-outline-solid', href='/listings/'+listing.id) View
+                  if user
+                    a(href='/messages/'+listing.id+'/'+user.id, class='btn btn-solid') Message
+          div(class='modal fade', id='imgModal'+i, tabindex='-1', role='dialog', aria-labelledby='imgModal', aria-hidden='true')
+            div(class='modal-dialog modal-xl modal-dialog-centered' role='document')
+              div(class='modal-content')
+                div(class='modal-header')
+                  button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+                div(class='modal-body')
+                  img(src='/api/images/'+listing.image, widt="500" class='card-img')
+
+        

@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/listings.css')
+  script(src='/javascripts/listing.js')
+  div(class='main-container container my-5 my-lg-4')
+    h4.container.display-5='You have '+listings.length+' listings'  
+    div(class='row')
+      if listings.length===0
+        .lead.m-3 You don't have any listings! 
+            a(href='/listings/new') Create a first listing!
+      else    
+        each listing, i in listings
+          div(class='col-12')
+            div(class='card mb-4 shaddow-sm')
+              img(src='/api/images/'+listing.image, class='card-img-top', data-toggle='modal' data-target='#imgModal'+i)
+              div(class='card-body')
+                h5(class='card-title')=listing.title
+                h6(class='card-subtitle mb-2 text-muted')='US $'+listing.price
+                h5
+                  span(class="badge badge-secondary")=listing.category
+                div(class='btn-group', role='group', aria-label='Basic example')
+                  a(class='btn btn-outline-solid', href='/listings/edit/'+listing.id) Edit
+                  a(class='btn btn-outline-solid', href='/listings/'+listing.id) View
+                  a(class='btn btn-solid-danger btn-danger', data-toggle='modal' data-target='#deleteModal'+i) Delete
+
+          div(class='modal fade', id='imgModal'+i, tabindex='-1', role='dialog', aria-labelledby='imgModal', aria-hidden='true')
+            div(class='modal-dialog modal-xl modal-dialog-centered' role='document')
+              div(class='modal-content')
+                div(class='modal-header')
+                  button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+                div(class='modal-body')
+                  img(src='/api/images/'+listing.image, widt="500" class='card-img')
+          
+          div(class='modal fade', id='deleteModal'+i, tabindex='-1', role='dialog', aria-labelledby='deleteModal', aria-hidden='true')
+            div(class='modal-dialog modal-dialog-centered' role='document')
+              div(class='modal-content' id='modal'+listing.id)
+                div(class='modal-header')
+                  h5(class='modal-title') Delete Listing
+                  button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+                div(class='modal-body text-center' id='modalText'+listing.id)='Are you sure you want to delete listing '+listing.title+'? This action cannot be undone!'
+                .modal-footer(id='modalFooter'+listing.id)
+                  button.btn.btn-outline-solid(data-dismiss="modal") Cancel
+                  button.btn.btn-solid-danger.btn-danger(onclick='deleteListing('+JSON.stringify(listing)+')') Delete
+      

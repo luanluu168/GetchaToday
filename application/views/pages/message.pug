@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/messages.css')
+  div(id='uid', class='d-none')=user.id
+  //- div(id='uid', class='d-none') 04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+  div(class='main-container d-flex justify-content-center container-fliud my-5 my-lg-4')
+    .container.my-2
+      P Messages history
+      #chat-log
+    .chat-form
+      .container
+        p.text-warning#text-warning
+        .form-horizontal
+          .row
+            .col-sm-10.col-xs-8
+              input.form-control(type='text' id='input-message' placeholder='Enter your message')
+            .col-sm-2.col-xs-4.m-3.m-sm-0
+              button(class='btn btn-solid' id='btn-send') Send
+    
+  script(src='/vendor/ws.js')
+  script(src='/javascripts/message.js')

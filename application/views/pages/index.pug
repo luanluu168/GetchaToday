@@ -1,0 +1,92 @@
+extends ../auth/layout
+
+block content
+  div(class='main-container container-fliud')
+    div(class='jumbotron')
+      div(class='header-section white')
+      if user
+        h1(class='big-heading center')='Hello, ' + user.username + '!'
+          p(class='lead') Welcome back to Getcha Today! Do you have anything we can help you to sell?
+          a(class='btn btn-solid btn-lg m-3',href='/listings/new', role='button') Sell Now!
+        p(class='lead text-center') Otherwise you can browse through item listed by other sellers!
+        form(id='formSearch', action='/listings/search', method='POST')
+          div(class='form-group mb-3')
+            label.ml-3(for='filterInput') Search listings
+              span.text-warning#filterWarning
+              
+            div(class='input-group')
+              input(name='filter', type='text',class='form-control',id='filterInput', placeholder='What are you looking for?')
+              div(class='input-group-append')
+                button(class='btn btn-outline-solid', type='submit')
+                  i.fa.fa-search
+          .form-row
+            .form-group.col-md-4
+              select(class='custom-select', id='categorySelect', name='category')
+                option(value='') Select category
+                option(value='electronics') Electronics
+                option(value='clothes') Clothes
+                option(value='furniture') Furniture
+                option(value='vehicles') Vehicles
+                option(value='other') Other
+            .form-group.col-md-2
+              input#inputMinPrice.form-control(type='number', name='minPrice', placeholder='Min.Price, $')
+            .form-group.col-md-2
+              input#inputMaxPrice.form-control(type='number', name='maxPrice', placeholder='Max.Price, $')
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='sortSelect', name='sort')
+                option(value='', selected='') Sort
+                option(value='recent') Most Recent
+                option(value='high') Price High to Low
+                option(value='low') Price Low to High
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='distanceSelect', name='distance')
+                option(value='', selected='') Max.Distance, miles
+                option(value='10') 10
+                option(value='50') 50
+                option(value='100') 100
+      else
+        h1(class='big-heading center') Hello, guest!
+          p(class='lead') Welcome to Getcha Today! Marketplace for independent sellers. Buy and sell things locally.
+        form(id='formSearch', action='/listings/search', method='POST')
+          div(class='form-group mb-3')
+            label.ml-3(for='filterInput') Search listings
+              span.text-warning#filterWarning
+            div(class='input-group')
+              input(name='filter', type='text',class='form-control',id='filterInput', placeholder='What are you looking for?')
+              div(class='input-group-append')
+                button(class='btn btn-outline-solid', type='submit')
+                  i.fa.fa-search
+          .form-row
+            .form-group.col-md-4
+              select(class='custom-select', id='categorySelect', name='category')
+                option(value='') Select category
+                option(value='electronics') Electronics
+                option(value='clothes') Clothes
+                option(value='furniture') Furniture
+                option(value='vehicles') Vehicles
+                option(value='other') Other
+            .form-group.col-md-2
+              input#inputMinPrice.form-control(type='number', name='minPrice', placeholder='Min.Price, $')
+            .form-group.col-md-2
+              input#inputMaxPrice.form-control(type='number', name='maxPrice', placeholder='Max.Price, $')
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='sortSelect', name='sort')
+                option(value='', selected='') Sort
+                option(value='recent') Most Recent
+                option(value='high') Price High to Low
+                option(value='low') Price Low to High
+            .form-group.col-6.col-md-2
+              select(class='custom-select', id='distanceSelect', name='distance')
+                option(value='', selected='') Max.Distance, miles
+                option(value='10') 10
+                option(value='50') 50
+                option(value='100') 100
+        div.center
+          p Please authenticate to start selling
+          a(class='btn btn-outline-solid btn-lg m-3 header-button',href='/signin', role='button', id='signin') Sign In
+          a(class='btn btn-solid btn-lg m-3 header-button',href='/signup', role='button', id='signup') Sign Up
+    
+    div(class='py-3 text-center')
+      img(class='d-block mx-auto mb-4', src='/assets/logo_2.png', alt='logo', width='150', height='150')
+      p(class='lead') Getcha Today 2020
+      

@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div(class='main-container container-fliud my-5 my-lg-4')
+    div(class='row')
+      div(class='col-lg-12')
+        .my-3.p-3.bg-white.rounded.shadow-sm
+          h6.border-bottom.border-gray.pb-2.mb-0 Messages From Buyers
+          if sellerMessages.length === 0
+            p.text-muted.m-2 No activity found
+          else
+            each message in sellerMessages
+              .media.text-muted.pt-3
+                img(class="d-block mb-4 mr-3" src="/assets/user.png" alt="" width="32" height="32")
+                p.media-body.pb-3.mb-0.small.lh-125.border-bottom.border-gray
+                  strong.d-block.text-gray-dark
+                    a(href='/listings/'+message.item_id)=message.title
+                    a=' from '+message.username
+                  a(href='/messages/'+message.item_id+'/'+message.channel_id) veiw message
+
+          h6.border-bottom.border-gray.pb-2.mb-0.mt-3 Messages To Sellers
+          if buyerMessages.length === 0
+            p.text-muted.m-2 No activity found
+          else
+            each message in buyerMessages
+              .media.text-muted.pt-3
+                img(class="d-block mb-4 mr-3" src="/assets/user.png" alt="" width="32" height="32")
+                p.media-body.pb-3.mb-0.small.lh-125.border-bottom.border-gray
+                  strong.d-block.text-gray-dark
+                    a(href='/listings/'+message.item_id)=message.title
+                    a=' to '+message.username
+                  a(href='/messages/'+message.item_id+'/'+message.channel_id) veiw message

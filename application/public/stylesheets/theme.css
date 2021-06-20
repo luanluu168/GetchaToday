@@ -1,0 +1,110 @@
+html {
+  min-height: 100vh;
+}
+
+html, body {
+  background-color: #F7F7FF;
+  color: #564D4A;
+}
+
+.navbar {
+  background-color: #545E75;
+  min-height: 70px;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #FFFCF2;
+  font-weight: 700;
+}
+
+.navbar-brand {
+  width: 150px;
+}
+
+.btn-outline-solid {
+  color: inherit;  
+  text-decoration: none;
+  border-color: #7A82AB;
+}
+
+.btn-outline-solid:hover {
+  color: #fff !important;
+  background-color: #545E75;
+  border-color: #545E75;
+}
+
+.btn-outline-solid:active {
+  color: #fff;
+  background-color: #4b5469;
+  border-color: #545E75;
+}
+
+
+.btn-solid {
+  color: #fff;
+  background-color: #7A82AB;
+  border-color: #7A82AB;
+}
+
+.btn-solid:hover {
+  color: #fff;
+  background-color: #545E75;
+  border-color: #545E75;
+}
+
+.btn-solid:active {
+  color: #fff;
+  background-color: #4b5469;
+  border-color: #545E75;
+}
+
+
+.btn-href {
+  font-weight: 400;
+  color: #7A82AB;
+  text-decoration: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.btn-href:focus {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.btn-href:hover {
+  color: #545E75;
+  text-decoration: underline;
+}
+
+.btn-href:active {
+  color: #4b5469;
+}
+/* TODO fix !important tags */
+.a-href {
+  font-weight: 400 !important;
+  color: #3618bf !important;
+  text-decoration: none;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.a-href:focus {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.a-href:hover {
+  color: #1e0d68 !important;
+  text-decoration: underline !important; 
+}
+
+.a-href:active {
+  color: #170952 !important;
+}
+
+.btn-solid-danger {
+  color: #fff !important;
+  background-color: #e66572 !important;
+  border-color: #dc3545 !important;
+}

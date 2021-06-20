@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div(class='main-container container my-5 my-lg-4')
+    div(class='card')
+      div(class='card-body')
+        form(action='/listings/edit/'+listing.id, method='POST', encType='multipart/form-data')
+          div(class='form-group mb-3')
+            label(for='titleInput') New Title
+            input(name='title', type='text',class='form-control',id='titleInput', value=listing.title placeholder='Enter new title',required)
+          div(class='input-group mb-3')
+            div(class='input-group-prepend')
+              span(class='input-group-text') $
+            input(name='price', type='number',class='form-control', value=listing.price placeholder='Price (to the nearest dollar)',required)
+            div(class='input-group-append')
+              span(class='input-group-text') .00
+          div(class='form-group mb-3')
+            label(for='descriptionInput') New Description (Max. 500 characters)
+            textarea(name='description', class='form-control',id='descriptionInput', placeholder='Enter new description',required)=listing.description
+          div(class='form-group mb-4')
+            label(for='imageInput') New Image
+            input(name='image', type='file', class='form-control-file', id='imageInput')
+          button(type='submit' class='ml-3 btn btn-solid') Edit
+          a(href='/listings/'+listing.id class='mx-3 btn btn-outline-solid') Cancel
+
+            
+      
+      

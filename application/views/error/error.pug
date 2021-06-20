@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  #error-container.container
+    h3(class='display-6')=error.text
+    img.img-fluid(src='/assets/error.png' width='250')
+    .my-5
+      a(href='/') Go back to Home page

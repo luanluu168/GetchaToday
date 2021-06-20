@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  div(class='main-container container-fliud my-5 my-lg-4')
+    div(class='card')
+      div(class='card-body')
+        if error
+          div(class="alert alert-warning" role="alert")=error
+        form(action='/listings/new', method='POST', encType='multipart/form-data')
+          div(class='form-group')
+            label(for='categorySelect') Listing Category
+            select(class='custom-select', id='categorySelect', name='category', required)
+              option(value='') Select category
+              option(value='electronics') Electronics
+              option(value='clothes') Clothes
+              option(value='furniture') Furniture
+              option(value='vehicles') Vehicles
+              option(value='other') Other
+          div(class='form-group mb-3')
+            label(for='titleInput') Listing Title
+            input(name='title', type='text',class='form-control',id='titleInput',placeholder='Enter your listing title',required)
+          div(class='input-group mb-3')
+            div(class='input-group-prepend')
+              span(class='input-group-text') $
+            input(name='price', type='number',class='form-control',id='priceInput', placeholder='Price (to the nearest dollar)',required)
+            div(class='input-group-append')
+              span(class='input-group-text') .00
+          div(class='form-group mb-3')
+            label(for='descriptionInput') Listing Description (Max. 500 characters)
+            textarea(name='description', class='form-control',id='descriptionInput',placeholder='Enter your listing description',required)
+          div(class='form-group mb-4')
+            label(for='imageInput') Listing Image
+            input(name='image', type='file', class='form-control-file', id='imageInput')
+          button(type='submit' class='mx-3 btn btn-solid') Sell It!
+
+            
+      
+      

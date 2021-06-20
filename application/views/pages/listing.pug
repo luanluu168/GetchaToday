@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/listings.css')
+  script(src='/javascripts/listing.js')
+  div(class='main-container container my-5 my-lg-4')
+    div(class='row')
+      if !listing
+        p(class='lead') Listing does not exist!
+      else
+        div(class='col-lg-12')
+          div(class='card mb-4 shaddow-sm')
+            img(src='/api/images/'+listing.image, class='card-img-top')
+            div(class='card-body')
+              h4(class='card-title')=listing.title + " in " + listing.location.city + ", " +listing.location.state
+              h4(class='card-subtitle mb-2 text-muted')='US $'+listing.price
+              h3
+                span(class="badge badge-secondary")=listing.category
+              p(class='cart-text')=listing.description
+              div(class='btn-group', role='group', aria-label='Basic example')
+                if user && user.id === listing.seller_id
+                  a(href='/listings/edit/' + listing.id, class='btn btn-solid') Edit
+                  a(class='btn btn-solid-danger btn-danger', data-toggle='modal' data-target='#deleteModal') Delete
+                  div(class='modal fade', id='deleteModal', tabindex='-1', role='dialog', aria-labelledby='deleteModal', aria-hidden='true')
+                    div(class='modal-dialog modal-dialog-centered' role='document')
+                      div(class='modal-content' id='modal'+listing.id)
+                        div(class='modal-header')
+                          h5(class='modal-title') Delete Listing
+                          button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                        div(class='modal-body text-center' id='modalText'+listing.id)='Are you sure you want to delete listing '+listing.title+'? This action cannot be undone!'
+                        .modal-footer(id='modalFooter'+listing.id)
+                          button.btn.btn-outline-solid(data-dismiss="modal") Cancel
+                          button.btn.btn-solid-danger.btn-danger(onclick='deleteListing('+JSON.stringify(listing)+')') Delete
+              
+                else if user
+                  a(type='button', class='btn btn-outline-solid', data-toggle='modal' data-target='#contactModal') Email
+                  a(href='/messages/'+listing.id+'/'+user.id, class='btn btn-solid') Message
+                else
+                  a(type='button', class='btn btn-outline-solid', data-toggle='modal' data-target='#contactModal') Contact
+        div(class='modal fade', id='contactModal', tabindex='-1', role='dialog', aria-labelledby='contactModal', aria-hidden='true')
+          div(class='modal-dialog modal-dialog-centered' role='document')
+            div(class='modal-content')
+              div(class='modal-header')
+                h5(class='modal-title') Contact Seller
+              div(class='modal-body')='Email: ' + listing.email

@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport',content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title=title + " | Getcha Today"
+    link(rel='stylesheet', href='/vendor/bootstrap.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/theme.css')
+    link(rel='stylesheet', href='/stylesheets/layout.css')
+    script(src='https://unpkg.com/axios/dist/axios.min.js')
+  body
+    nav(class='navbar navbar-expand-sm navbar-dark fixed-top')
+      a(class='navbar-brand', href='/') Getcha Today
+      button(class='navbar-toggler', type='button', data-toggle='collapse', data-target='#navbarNavAltMarkup', aria-controls='navbarNavAltMarkup', aria-expanded='false', aria-label='Toggle navigation')
+        span(class='navbar-toggler-icon')
+      div(class='collapse navbar-collapse justify-content-end',id='navbarNavAltMarkup')
+        div(class='navbar-nav')
+          if user
+            div(class="dropdown")
+              a(class='nav-item nav-link', data-toggle="dropdown", id="dropdownToggle") Account
+              div(class="dropdown-menu" aria-labelledby="dropdownMenuButton")
+                a(class="dropdown-item" href="/listings/selling") Selling
+                a(class="dropdown-item" href="/messages") Messages
+                a(class='dropdown-item' href='/account') Settings
+            a(href='/listings/search', class='nav-item nav-link') Listings
+            a(href='/signout', class='nav-item nav-link') Sign Out
+          else
+            a(href='/listings/search', class='nav-item nav-link') Listings
+            a(href='/signin', class='nav-item nav-link') Sign In
+            a(href='/signup', class='nav-item nav-link') Sign Up
+    block content
+    script(src='/vendor/jquery.js')
+    script(src='/vendor/popper.js')
+    script(src='/vendor/bootstrap.js')
+    script(src='/javascripts/search.js')
